@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "runArgs": [
+    "--userns=keep-id"
+  ],
+  "containerUser": "dev-user",
+  "remoteUser": "dev-user",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}
