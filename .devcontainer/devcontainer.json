@@ -4,13 +4,17 @@
     "dockerfile": "Dockerfile",
     "context": "."
   },
-  "runArgs": ["--userns=keep-id", "-p", "5173:5173"],
+  "runArgs": ["--userns=keep-id", "-p", "5173:5173", "-p", "8976:8976"],
   "containerUser": "dev-user",
   "remoteUser": "dev-user",
-  "forwardPorts": [5173],
+  "forwardPorts": [5173, 8976],
   "portsAttributes": {
     "5173": {
       "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    },
+    "8976": {
+      "label": "Claude Code",
       "onAutoForward": "notify"
     }
   },
