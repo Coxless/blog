@@ -5,10 +5,18 @@
     "context": "."
   },
   "runArgs": [
-    "--userns=keep-id"
+    "--userns=keep-id",
+    "-p", "3000:3000"
   ],
   "containerUser": "dev-user",
   "remoteUser": "dev-user",
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Vite Dev Server",
+      "onAutoForward": "notify"
+    }
+  },
   "customizations": {
     "vscode": {
       "settings": {
