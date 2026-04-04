@@ -20,3 +20,15 @@ devcontainer up --workspace-folder . --docker-path podman
 ```bash
 devcontainer exec --workspace-folder . --docker-path podman bash
 ```
+
+### コンテナの停止
+
+```bash
+podman pause {NAME}
+```
+
+### コンテナの再開
+
+```bash
+podman unpause {NAME}
+```
