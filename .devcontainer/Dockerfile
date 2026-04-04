@@ -28,9 +28,8 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} \
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 
-# Install mise
-RUN curl https://mise.run | sh \
-    && echo 'eval "$(/home/dev-user/.local/bin/mise activate bash)"' >> ~/.bashrc
+# Install vp
+RUN curl -fsSL https://vite.plus | bash
 
 # Install starship
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \

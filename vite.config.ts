@@ -1,24 +1,29 @@
-import { defineConfig } from 'vite'
-import { devtools } from '@tanstack/devtools-vite'
-import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from "vite-plus";
+import { devtools } from "@tanstack/devtools-vite";
+import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 
-import { tanstackStart } from '@tanstack/react-start/plugin/vite'
-
-import viteReact from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
+import viteReact from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
 const config = defineConfig({
+  staged: {
+    "*": "vp check --fix",
+  },
+  fmt: {},
+  lint: { options: { typeAware: true, typeCheck: true } },
+  resolve: {
+    tsconfigPaths: true,
+  },
   plugins: [
     devtools(),
-    tsconfigPaths({ projects: ['./tsconfig.json'] }),
     tailwindcss(),
     tanstackStart(),
     viteReact({
       babel: {
-        plugins: ['babel-plugin-react-compiler'],
+        plugins: ["babel-plugin-react-compiler"],
       },
     }),
   ],
-})
+});
 
-export default config
+export default config;
