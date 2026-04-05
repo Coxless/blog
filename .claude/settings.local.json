@@ -1,5 +1,10 @@
 {
   "permissions": {
-    "allow": ["Bash(vp remove:*)"]
+    "allow": [
+      "Bash(vp remove:*)",
+      "Bash(vp dev:*)",
+      "Bash(kill %1)",
+      "Bash(wait)"
+    ]
   }
 }

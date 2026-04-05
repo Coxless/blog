@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 
 ARG USERNAME=dev-user
 ARG USER_UID=1000
@@ -28,8 +28,9 @@ RUN groupadd --gid ${USER_GID} ${USERNAME} \
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 
-# Install vp
-RUN curl -fsSL https://vite.plus | bash
+# Install mise
+RUN curl https://mise.run | sh \
+    && echo 'eval "$(~/.local/bin/mise activate bash)"' >> ~/.bashrc
 
 # Install starship
 RUN curl -sS https://starship.rs/install.sh | sh -s -- --yes \
