@@ -78,12 +78,12 @@ export default function ZennArticles() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
                     <h3 className="group-hover:text-primary transition-colors">{article.title}</h3>
-                    <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0 ml-2" />
+                    <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-2" />
                   </div>
                   <span className="text-muted-foreground text-sm">{article.publishedAt}</span>
                   {article.comment && (
                     <div className="mt-3 pt-3 border-t border-border flex items-start gap-2 text-muted-foreground text-sm">
-                      <MessageSquare className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                      <MessageSquare className="w-4 h-4 shrink-0 mt-0.5" />
                       <span>{article.comment}</span>
                     </div>
                   )}
