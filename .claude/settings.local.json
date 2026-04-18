@@ -6,7 +6,10 @@
       "Bash(kill %1)",
       "Bash(wait)",
       "WebFetch(domain:github.com)",
-      "Bash(gh api:*)"
+      "Bash(gh api:*)",
+      "Bash(pnpm exec *)",
+      "Bash(pnpm build *)",
+      "Bash(pnpm test *)"
     ]
   }
 }
