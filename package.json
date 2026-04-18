@@ -10,7 +10,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "cf-typegen": "wrangler types"
+    "cf-typegen": "wrangler types",
+    "type-check": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
