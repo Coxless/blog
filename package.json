@@ -10,7 +10,6 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "deploy": "pnpm build && wrangler deploy",
     "cf-typegen": "wrangler types"
   },
   "dependencies": {
