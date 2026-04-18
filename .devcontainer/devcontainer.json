@@ -17,12 +17,5 @@
       "label": "Claude Code",
       "onAutoForward": "notify"
     }
-  },
-  "customizations": {
-    "vscode": {
-      "settings": {
-        "terminal.integrated.defaultProfile.linux": "bash"
-      }
-    }
   }
 }
