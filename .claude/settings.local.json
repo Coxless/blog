@@ -12,7 +12,13 @@
       "Bash(pnpm test *)",
       "Bash(pnpm install *)",
       "Bash(pnpm type-check *)",
-      "WebFetch(domain:zenn.dev)"
+      "WebFetch(domain:zenn.dev)",
+      "Bash(xargs cat)",
+      "Bash(git checkout *)",
+      "Bash(git rm *)"
     ]
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true
   }
 }

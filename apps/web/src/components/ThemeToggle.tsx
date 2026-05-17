@@ -1,3 +1,5 @@
+"use client";
+
 import { Monitor, Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
