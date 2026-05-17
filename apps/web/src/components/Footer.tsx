@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border mt-16 py-8">
       <div className="max-w-6xl mx-auto px-6 text-center text-muted-foreground">
-        <p>© {year} Tech Blog. Built with TanStack Start &amp; Tailwind CSS</p>
+        <p>© {year} Tech Blog. Built with Next.js &amp; Tailwind CSS</p>
       </div>
     </footer>
   );

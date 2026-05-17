@@ -1,4 +1,5 @@
 import { Calendar, Tag } from "lucide-react";
+import notesData from "./notes";
 
 type Note = {
   title: string;
@@ -7,13 +8,7 @@ type Note = {
   date: string;
 };
 
-const noteModules = import.meta.glob<{ default: Note }>("./notes/*.ts", {
-  eager: true,
-});
-
-const notes = Object.values(noteModules)
-  .map((mod) => mod.default)
-  .sort((a, b) => b.date.localeCompare(a.date));
+const notes = (notesData as Note[]).sort((a, b) => b.date.localeCompare(a.date));
 
 export default function Notes() {
   return (

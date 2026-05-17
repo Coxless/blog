@@ -4,10 +4,9 @@
   "scripts": {
     "dev": "pnpm --filter @blog/web dev",
     "build": "pnpm --filter @blog/web build",
-    "preview": "pnpm --filter @blog/web preview",
+    "start": "pnpm --filter @blog/web start",
     "test": "pnpm --filter @blog/web test",
-    "type-check": "pnpm --filter @blog/web type-check",
-    "deploy": "pnpm --filter @blog/web deploy"
+    "type-check": "pnpm --filter @blog/web type-check"
   },
   "packageManager": "pnpm@10.33.0",
   "pnpm": {
