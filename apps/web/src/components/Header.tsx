@@ -1,17 +1,9 @@
 "use client";
 
-import type { ComponentType } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Mail } from "lucide-react";
-import { Github, Twitter } from "./BrandIcons";
+import { socialLinks } from "./socialLinks";
 import ThemeToggle from "./ThemeToggle";
-
-const socialLinks: { href: string; label: string; icon: ComponentType<{ className?: string }> }[] = [
-  { href: "#", label: "GitHub", icon: Github },
-  { href: "#", label: "Twitter", icon: Twitter },
-  { href: "#", label: "Email", icon: Mail },
-];
 
 const tabs = [
   { to: "/", label: "ホーム", exact: true },
