@@ -1,5 +1,5 @@
-import { ExternalLink, Mail } from "lucide-react";
-import { Github, Twitter } from "./BrandIcons";
+import { ExternalLink } from "lucide-react";
+import { socialLinks } from "./socialLinks";
 
 export default function Profile() {
   return (
@@ -19,30 +19,17 @@ export default function Profile() {
             <p className="text-muted-foreground mb-6">Software Engineer</p>
 
             <div className="space-y-3 w-full">
-              <a
-                href="#"
-                className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-              >
-                <Github className="w-5 h-5" />
-                <span className="group-hover:underline">GitHub</span>
-                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-              >
-                <Twitter className="w-5 h-5" />
-                <span className="group-hover:underline">Twitter</span>
-                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
-              >
-                <Mail className="w-5 h-5" />
-                <span className="group-hover:underline">Email</span>
-                <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors group"
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="group-hover:underline">{label}</span>
+                  <ExternalLink className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
             </div>
           </div>
 
