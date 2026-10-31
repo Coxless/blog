@@ -1,5 +1,6 @@
 /** @jest-environment node */
-import { describe, expect, it } from "@jest/globals";
+import fs from "node:fs";
+import { describe, expect, it, jest } from "@jest/globals";
 import { getAllEntries, getEntries, getEntry, isKind, parseEntry } from "./content";
 
 describe("parseEntry", () => {
@@ -53,11 +54,17 @@ links:
 });
 
 describe("content ディレクトリ", () => {
-  it("全種類の投稿を読めて、新しい順に並ぶ", () => {
+  it("投稿を読めて、新しい順に並ぶ", () => {
     const entries = getAllEntries();
-    expect(new Set(entries.map((entry) => entry.kind))).toEqual(new Set(["products", "notes", "lab"]));
+    expect(entries.length).toBeGreaterThan(0);
     const dates = entries.map((entry) => entry.date);
     expect(dates).toEqual([...dates].sort().reverse());
+  });
+
+  it("ディレクトリがない種類は 0 件として扱う", () => {
+    const exists = jest.spyOn(fs, "existsSync").mockReturnValue(false);
+    expect(getEntries("products")).toEqual([]);
+    exists.mockRestore();
   });
 
   it("slug で取得でき、存在しなければ undefined を返す", () => {

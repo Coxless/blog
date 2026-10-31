@@ -24,13 +24,6 @@ const articles = [
     comment: "環境構築をhome-managerで管理したくなったので、やったものです",
   },
   {
-    slug: "300f464cbcff76",
-    title: "Claude Codeの並列開発を可視化するTUIツール「ccmon」を作ってみた",
-    emoji: "🖥️",
-    publishedAt: "2026-01-18",
-    comment: "作ったはいいものの放置してます",
-  },
-  {
     slug: "ace251d445175a",
     title: "[Tips]ZedでTerraformのformat on saveが効かなかったので対処した",
     emoji: "🛠️",

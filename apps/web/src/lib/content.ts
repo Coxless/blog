@@ -84,6 +84,8 @@ function sortByNewest(entries: Entry[]): Entry[] {
 
 export function getEntries(kind: Kind): Entry[] {
   const dir = path.join(CONTENT_DIR, kind);
+  // 投稿が 0 件の種類は、git に空ディレクトリが残らないので存在しないことがある
+  if (!fs.existsSync(dir)) return [];
   const entries = fs
     .readdirSync(dir)
     .filter((file) => file.endsWith(".mdx"))
