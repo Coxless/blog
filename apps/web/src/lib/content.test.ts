@@ -1,6 +1,6 @@
-/** @jest-environment node */
+/** @vitest-environment node */
 import fs from "node:fs";
-import { describe, expect, it, jest } from "@jest/globals";
+import { describe, expect, it, vi } from "vitest";
 import { getAllEntries, getEntries, getEntry, isKind, parseEntry } from "./content";
 
 describe("parseEntry", () => {
@@ -62,7 +62,7 @@ describe("content ディレクトリ", () => {
   });
 
   it("ディレクトリがない種類は 0 件として扱う", () => {
-    const exists = jest.spyOn(fs, "existsSync").mockReturnValue(false);
+    const exists = vi.spyOn(fs, "existsSync").mockReturnValue(false);
     expect(getEntries("products")).toEqual([]);
     exists.mockRestore();
   });

@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it, jest } from "@jest/globals";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
@@ -7,7 +7,7 @@ import WasmFib from "./WasmFib";
 const originalFetch = globalThis.fetch;
 
 function mockFetch(response: Partial<Response>) {
-  globalThis.fetch = jest.fn<typeof fetch>().mockResolvedValue(response as Response);
+  globalThis.fetch = vi.fn<typeof fetch>().mockResolvedValue(response as Response);
 }
 
 afterEach(() => {
