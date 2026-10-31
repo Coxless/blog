@@ -2,7 +2,8 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",
@@ -10,7 +11,7 @@
   ],
   "compilerOptions": {
     "target": "ES2022",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "Preserve",
     "lib": [
       "ES2022",

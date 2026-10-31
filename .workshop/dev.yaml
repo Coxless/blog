@@ -1,0 +1,59 @@
+# Workshop 定義ファイル (blog)
+# リファレンス: https://ubuntu.com/workshop/docs/reference/definition-files/workshop-definition/
+#
+# - name はファイル名 (.workshop/<name>.yaml) と一致させる
+# - base / sdks を変更したら `workshop refresh` で反映する
+# - actions の変更は refresh 不要 (即時反映)
+
+name: dev
+base: ubuntu@26.04
+
+sdks:
+  # `next dev` (ワークショップ内の 5173 番) をホストの 127.0.0.1:5173 で見る。
+  # system の tunnel プラグは他の SDK にある同名のスロットにだけ自動接続される。
+  - name: node          # pnpm は SDK 同梱の Corepack 経由で使う
+    channel: 24/stable
+    slots:
+      web:              # ワークショップ側の接続先
+        interface: tunnel
+        endpoint: 127.0.0.1:5173
+  - name: rust          # WASM デモのビルド用 (packages/wasm-demo)
+    channel: latest/stable
+  - name: system
+    plugs:
+      web:              # ホスト側の待ち受け
+        interface: tunnel
+        endpoint: 127.0.0.1:5173
+
+# `workshop run -- <action> [引数...]` で実行する名前付きスクリプト。
+# bash (errexit + pipefail) で実行される。プロジェクトは /project にマウントされる。
+actions:
+  setup: |
+    cd /project
+    export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+    corepack enable --install-directory "$HOME/.local/bin"
+    corepack install
+    rustup target add wasm32-unknown-unknown
+    pnpm install
+
+  dev: |
+    cd /project
+    pnpm dev "$@"
+
+  build: |
+    cd /project
+    pnpm build "$@"
+
+  test: |
+    cd /project
+    pnpm test "$@"
+
+  check: |
+    cd /project
+    pnpm type-check
+    pnpm test
+    pnpm build
+
+  wasm: |
+    cd /project
+    pnpm wasm:build

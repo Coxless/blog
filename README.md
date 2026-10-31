@@ -1,44 +1,60 @@
 # blog
 
-## Development Container
+Next.js 製の個人ブログです。自作プロダクトの紹介、技術的なつぶやき、WASM などの実験を掲載します。
 
-Podman と devcontainer CLI を使った開発環境を用意しています。
+## 開発環境
 
-### 前提
-
-- [Podman](https://podman.io/)
-- [devcontainer CLI](https://github.com/devcontainers/cli)
-
-### コンテナの起動・接続（推奨）
-
-起動チェックと接続を一括で行うスクリプトを用意しています。
+[Workshop](https://ubuntu.com/workshop/docs/) (Ubuntu) で開発環境を用意します。定義は `.workshop/dev.yaml` にあり、Node.js、pnpm (Corepack)、Rust が入ります。
 
 ```bash
-./dev.sh
+# 前提 (初回のみ)
+sudo snap install --channel=6/stable lxd
+sudo snap install --classic workshop
+
+workshop launch dev     # 環境を作る (初回のみ)
+workshop run -- setup   # 依存関係を入れる
+workshop run -- dev     # 開発サーバーを起動する → http://127.0.0.1:5173
 ```
 
-コンテナが起動していない場合は自動で起動してから接続し、すでに起動済みの場合はそのまま接続します。
+| コマンド | 内容 |
+| --- | --- |
+| `workshop run -- dev` | 開発サーバーを起動 |
+| `workshop run -- check` | 型チェック、テスト、ビルドをまとめて実行 |
+| `workshop run -- test` | テストを実行 |
+| `workshop run -- build` | 本番ビルド |
+| `workshop run -- wasm` | WASM デモをビルド |
+| `workshop shell` | ワークショップ内のシェルに入る (プロジェクトは `/project`) |
 
-### コンテナの起動（手動）
+## 投稿の書き方
 
-```bash
-devcontainer up --workspace-folder . --docker-path podman
+`apps/web/content/` に MDX ファイルを追加すると、ファイル名を URL とするページができます。
+
+| ディレクトリ | 内容 | URL |
+| --- | --- | --- |
+| `products/` | 自作プロダクトの紹介 | `/products/<ファイル名>` |
+| `notes/` | 技術的なつぶやき | `/notes/<ファイル名>` |
+| `lab/` | WASM などの実験 | `/lab/<ファイル名>` |
+
+```mdx
+---
+title: タイトル             # products と lab は必須、notes は省略可
+date: 2026-10-31            # 必須
+summary: 一覧に出す概要      # 省略すると本文の冒頭から作る
+tags: [WASM, Rust]          # 省略可
+links:                      # 省略可
+  - label: GitHub
+    url: https://github.com/Coxless/blog
+---
+
+本文 (Markdown)
 ```
 
-### コンテナへの接続（手動）
+frontmatter が不正な場合はビルドがエラーになります。
 
-```bash
-devcontainer exec --workspace-folder . --docker-path podman bash
-```
+## WASM などのデモを追加する
 
-### コンテナの停止
+1. `apps/web/src/components/demos/` にクライアントコンポーネントを作ります。
+2. `apps/web/src/components/demos/index.ts` に登録します。
+3. `content/lab/` の MDX から `<WasmFib />` のように呼び出します。
 
-```bash
-podman pause {NAME}
-```
-
-### コンテナの再開
-
-```bash
-podman unpause {NAME}
-```
+Rust のコードは `packages/wasm-demo` にあります。変更したら `workshop run -- wasm` でビルドし、生成された `apps/web/public/wasm/demo.wasm` もコミットしてください。デプロイ時と CI では Rust を使いません。

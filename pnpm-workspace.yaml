@@ -1,3 +1,8 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+
+# どちらもプラットフォーム別のビルド済みバイナリを使うので、install スクリプトは不要。
+allowBuilds:
+  '@parcel/watcher': false
+  unrs-resolver: false

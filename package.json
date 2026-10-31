@@ -6,13 +6,12 @@
     "build": "pnpm --filter @blog/web build",
     "start": "pnpm --filter @blog/web start",
     "test": "pnpm --filter @blog/web test",
-    "type-check": "pnpm --filter @blog/web type-check"
+    "type-check": "pnpm --filter @blog/web type-check",
+    "wasm:build": "cargo build --manifest-path packages/wasm-demo/Cargo.toml --release --target wasm32-unknown-unknown && install -D -m 644 packages/wasm-demo/target/wasm32-unknown-unknown/release/wasm_demo.wasm apps/web/public/wasm/demo.wasm",
+    "wasm:test": "cargo test --manifest-path packages/wasm-demo/Cargo.toml"
   },
-  "packageManager": "pnpm@10.33.0",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "lightningcss"
-    ]
+  "packageManager": "pnpm@12.16.1",
+  "engines": {
+    "node": ">=24"
   }
 }

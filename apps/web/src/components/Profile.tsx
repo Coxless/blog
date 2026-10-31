@@ -1,4 +1,5 @@
-import { ExternalLink, Github, Mail, Twitter } from "lucide-react";
+import { ExternalLink, Mail } from "lucide-react";
+import { Github, Twitter } from "./BrandIcons";
 
 export default function Profile() {
   return (
