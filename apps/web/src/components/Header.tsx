@@ -1,19 +1,23 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { ComponentType } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Github, Mail, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Twitter } from "./BrandIcons";
 import ThemeToggle from "./ThemeToggle";
 
-const socialLinks: { href: string; label: string; icon: LucideIcon }[] = [
+const socialLinks: { href: string; label: string; icon: ComponentType<{ className?: string }> }[] = [
   { href: "#", label: "GitHub", icon: Github },
   { href: "#", label: "Twitter", icon: Twitter },
   { href: "#", label: "Email", icon: Mail },
 ];
 
 const tabs = [
-  { to: "/", label: "記事", exact: true },
+  { to: "/", label: "ホーム", exact: true },
+  { to: "/products", label: "プロダクト", exact: false },
+  { to: "/notes", label: "つぶやき", exact: false },
+  { to: "/lab", label: "ラボ", exact: false },
   { to: "/zenn", label: "Zenn", exact: false },
   { to: "/profile", label: "プロフィール", exact: false },
 ] as const;
@@ -61,7 +65,7 @@ export default function Header() {
                 href={tab.to}
                 className={
                   isActive
-                    ? "px-4 py-2 rounded-lg bg-primary text-white no-underline"
+                    ? "px-4 py-2 rounded-lg bg-primary text-primary-foreground no-underline"
                     : "px-4 py-2 rounded-lg transition-colors text-foreground hover:bg-secondary/50 no-underline"
                 }
               >

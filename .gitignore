@@ -15,3 +15,14 @@ todos.json
 .pnpm-store/
 **/routeTree.gen.ts
 .vite-plus/
+
+# Next.js / Vercel
+.next
+.vercel
+*.tsbuildinfo
+
+# Workshop
+.workshop.lock
+
+# Rust (WASM demos)
+target/
